@@ -1,21 +1,12 @@
 // Replace with your backend URL
 const BACKEND_URL = "https://liveweather-69dc.onrender.com";
 
-document.getElementById("getWeather").addEventListener("click", async () => {
-    const location = document.getElementById("location").value;
+document.addEventListener("DOMContentLoaded", async () => {
     const weatherDisplay = document.getElementById("weatherDisplay");
 
-    // Clear the display before fetching data
-    weatherDisplay.innerHTML = "";
-
-    if (!location) {
-        weatherDisplay.innerHTML = '<p class="text-danger">Please enter a location.</p>';
-        return;
-    }
-
     try {
-        // Fetch weather data from the backend
-        const response = await fetch(`${BACKEND_URL}/api/weather?location=${encodeURIComponent(location)}`);
+        // Fetch weather data for the default location
+        const response = await fetch(`${BACKEND_URL}/api/weather?location=Melbourne`); // Replace 'Melbourne' with your default city
         const data = await response.json();
 
         // Handle errors returned from the backend
